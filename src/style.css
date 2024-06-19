@@ -3,6 +3,28 @@
   margin: 50px 0;
 }
 
+.btn {
+  background-color: black;
+  color: white;
+  border: 2px solid transparent;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
+
+.btn:hover {
+  background-color: white;
+  color: black;
+  border-color: black;
+}
+
+.btn-hidden-design {
+  background: none;
+  border: none;
+}
+
 /* blog */
 #articles-list {
   display: -webkit-box;
@@ -63,8 +85,25 @@
 
 #single-article-page article #body {
   text-align: left !important;
+  margin-bottom: 40px;
 }
 
+/* Comments component inside single article page */
+#comments form, #comments input, #comments label, #comments textarea {
+  width: 100%;
+}
+
+#comments #post-comment {
+  margin-bottom: 30px;
+}
+
+#comments .comment {
+  padding: 20px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+/* sidebar*/
 aside {
   min-width: 25%;
   height: 80vh;

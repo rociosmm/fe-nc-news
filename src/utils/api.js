@@ -66,8 +66,8 @@ export const getTopic = (params) => {
 export const getCommentsForArticle = (article_id) => {
 	return ncNewsApi
 		.get(`/articles/${article_id}/comments`)
-		.then(({comments}) => {
-			return comments;
+		.then(({data}) => {
+			return data.comments;
 		})
 		.catch((err) => {
 			throw err;

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {getArticleByID} from "../utils/api";
 import {SideBar} from "./SideBar";
+import {Comments} from "./Comments";
 
 export const SingleArticle = () => {
 	const {article_id} = useParams();
@@ -42,6 +43,8 @@ export const SingleArticle = () => {
 					{singleArticle.author} | {dateArticle}
 				</p>
 				<div id="body">{singleArticle.body}</div>
+
+				<Comments article_id={singleArticle.article_id} />
 			</article>
 			<aside>
 				<SideBar />
