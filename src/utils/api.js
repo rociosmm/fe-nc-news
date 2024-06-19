@@ -34,7 +34,6 @@ export const getArticleByID = (article_id) => {
 	return ncNewsApi
 		.get(`/articles/${article_id}`)
 		.then(({data}) => {
-			console.log("data in getArticleByID :>> ", data);
 			return data.article;
 		})
 		.catch((err) => {
@@ -78,6 +77,21 @@ export const getUsers = () => {
 		.get("/users")
 		.then(({users}) => {
 			return users;
+		})
+		.catch((err) => {
+			throw err;
+		});
+};
+
+export const editArticle = (article_id, body) => {
+	return ncNewsApi
+		.patch(`/articles/${article_id}`, body)
+		.then((res) => {
+			if (res.status >= 200 && res.status < 300) {
+				return res.data;
+			} else {
+				throw new Error(res.msg);
+			}
 		})
 		.catch((err) => {
 			throw err;

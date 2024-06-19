@@ -4,11 +4,12 @@ import {getCommentsForArticle} from "../utils/api";
 export const Comments = ({article_id}) => {
 	const [commentsFetch, setCommentsFetch] = useState([]);
 	useEffect(() => {
-		getCommentsForArticle(article_id).then((comments) => {
-			setCommentsFetch(comments);
-		});
+		if (article_id) {
+			getCommentsForArticle(article_id).then((comments) => {
+				setCommentsFetch(comments);
+			});
+		}
 	}, [article_id]);
-	console.log("commentsFetch :>> ", commentsFetch);
 	return (
 		<div id="comments">
 			<p className="fs-4 fw-bold">Comments</p>
@@ -37,8 +38,23 @@ export const Comments = ({article_id}) => {
 								<p>{comment.body}</p>
 								<p>
 									{commentDate} | Votes: {comment.votes} — Is it util for you?{" "}
-									<button className="btn-hidden-design">👍</button> |
-									<button className="btn-hidden-design">👎</button>
+									<button className="btn-hidden-design">
+										<img
+											src="/src/assets/images/like.png"
+											width={"16px"}
+											alt="Like comment"
+											title="Like comment"
+										/>
+									</button>{" "}
+									|
+									<button className="btn-hidden-design">
+										<img
+											src="/src/assets/images/dislike.png"
+											width={"18px"}
+											alt="Dislike comment"
+											title="Dislike comment"
+										/>
+									</button>
 								</p>
 							</article>
 						);
