@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import {getArticleByID} from "../utils/api";
+import {editArticle, getArticleByID} from "../utils/api";
 import {SideBar} from "./SideBar";
 import {Comments} from "./Comments";
 
 export const SingleArticle = () => {
 	const {article_id} = useParams();
 	const [singleArticle, setSingleArticle] = useState({});
-	console.log("article_id :>> ", article_id);
+	const [error, setError] = useState("");
 	let dateArticle;
 	useEffect(() => {
 		getArticleByID(article_id).then((article) => {
@@ -19,7 +19,23 @@ export const SingleArticle = () => {
 		const date = new Date(singleArticle.created_at);
 		dateArticle = date.toLocaleDateString();
 	}
-	console.log("singleArticle :>> ", singleArticle);
+
+	const vote = (increment) => {
+		setSingleArticle((currentArt) => {
+			return {...currentArt, votes: currentArt.votes + increment};
+		});
+
+		editArticle(singleArticle.article_id, {
+			inc_votes: increment,
+		})
+			.then((data) => {
+				setSingleArticle(data.article);
+			})
+			.catch((err) => {
+				setError("Try again, your vote couldn't be added");
+				throw new Error(err.message);
+			});
+	};
 
 	return (
 		<div id="single-article-page">
@@ -41,6 +57,33 @@ export const SingleArticle = () => {
 				</h5>
 				<p className="meta-info">
 					{singleArticle.author} | {dateArticle}
+				</p>
+				{!error ? (
+					<p>Article votes: {singleArticle.votes}</p>
+				) : (
+					setTimeout(() => {
+						singleArticle.votes - 1;
+					}, 1000)
+				)}
+				<p>
+					Give us your vote:
+					<button className="btn-hidden-design" onClick={(e) => vote(1)}>
+						<img
+							src="/src/assets/images/like.png"
+							width={"16px"}
+							alt="Like comment"
+							title="Like comment"
+						/>
+					</button>{" "}
+					|
+					<button className="btn-hidden-design" onClick={(e) => vote(-1)}>
+						<img
+							src="/src/assets/images/dislike.png"
+							width={"18px"}
+							alt="Dislike comment"
+							title="Dislike comment"
+						/>
+					</button>
 				</p>
 				<div id="body">{singleArticle.body}</div>
 

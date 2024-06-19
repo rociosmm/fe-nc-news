@@ -8,7 +8,6 @@ export const Blog = () => {
 
 	useEffect(() => {
 		getArticles("articles").then(({articles}) => {
-			console.log("articles in blog req :>> ", articles);
 			setArticles(articles);
 		});
 		setIsLoading(false);
