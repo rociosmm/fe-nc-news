@@ -134,6 +134,34 @@ h1 {
           box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
+/* USERS */
+#users {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#users .user-card {
+  min-width: 20%;
+  margin: 20px;
+  text-align: center;
+}
+
+#users .user-card img {
+  width: 200px;
+  height: 200px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+/* END USERS */
 /* sidebar*/
 aside {
   min-width: 25%;

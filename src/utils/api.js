@@ -60,8 +60,8 @@ export const getCommentsForArticle = (article_id) => {
 export const getUsers = () => {
 	return ncNewsApi
 		.get("/users")
-		.then(({users}) => {
-			return users;
+		.then(({data}) => {
+			return data.users;
 		})
 		.catch((err) => {
 			throw err;
