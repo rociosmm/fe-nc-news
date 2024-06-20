@@ -131,6 +131,29 @@ h1{
     }
 }
 
+/* USERS */
+#users{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .user-card {
+        min-width: 20%;
+        margin: 20px;
+        text-align: center;
+
+
+        img{
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            margin: 0 auto;
+            padding: 30px;
+        }
+    }
+}
+/* END USERS */
+
 /* sidebar*/
 aside{
     min-width: 25%;

@@ -4,7 +4,7 @@ import {useForm} from "../hooks/useForm";
 
 export const Comments = ({article_id}) => {
 	const [commentsFetch, setCommentsFetch] = useState([]);
-	const [userLogged, setUserLogged] = useState("rocio_admin");
+	const [userLogged, setUserLogged] = useState("grumpy19");
 	const {form, handleChange, handleSubmit} = useForm({
 		author: userLogged,
 	});
