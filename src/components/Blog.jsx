@@ -7,7 +7,7 @@ export const Blog = () => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		getArticles("articles").then(({articles}) => {
+		getArticles().then(({articles}) => {
 			setArticles(articles);
 		});
 		setIsLoading(false);

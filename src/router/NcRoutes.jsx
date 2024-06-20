@@ -22,7 +22,7 @@ export const NcRoutes = ({articles, isLoading}) => {
 			<Route path="/blog/:article_id/edit" element={<PostEditArticle />} />
 			<Route path="/blog/new-article" element={<PostEditArticle />} />
 			<Route path="/blog/topics" element={<Topics />} />
-			<Route path="/blog/topics/:slug" element={<Articles />} />
+			<Route path="/blog/topics/:topic" element={<Articles />} />
 			<Route path="/users" element={<Users />} />
 			<Route path="/users/:username" element={<SingleUser />} />
 		</Routes>

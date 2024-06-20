@@ -17,7 +17,10 @@ export const ArticleCard = ({article}) => {
 				<Card.Title>
 					<h5>{article.title}</h5>
 				</Card.Title>
-				<Link to={`/blog/${article.article_id}`} title={`Read ${article.title}`}>
+				<Link
+					to={`/blog/${article.article_id}`}
+					title={`Read ${article.title}`}
+				>
 					Read article
 				</Link>
 			</Card.Body>
