@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from "react";
 import {getCommentsForArticle, postComment} from "../utils/api";
 import {useForm} from "../hooks/useForm";
+import {CommentBox} from "./designComponents/CommentBox";
 
 export const Comments = ({article_id}) => {
 	const [commentsFetch, setCommentsFetch] = useState([]);
 	const [userLogged, setUserLogged] = useState("grumpy19");
 	const {form, handleChange, handleSubmit} = useForm({
-		author: userLogged,
+		username: userLogged,
 	});
+	const [postedComment, setPostedComment] = useState({});
 	// const [form, setForm] = useState({});
 
 	// const [currentCommentForm, setCurrentCommentForm] = useState({
@@ -26,42 +28,38 @@ export const Comments = ({article_id}) => {
 		e.preventDefault();
 		handleSubmit(e);
 		console.log("form bf send :>> ", form);
-		postComment(article_id, form).then((data) => {
-			console.log("data postComment :>> ", data);
+		postComment(article_id, form).then(({comment}) => {
+			setPostedComment(comment);
 		});
 	};
 	return (
 		<div id="comments">
 			<p className="fs-4 fw-bold">Comments</p>
 			<section id="post-comment">
-				<pre>{JSON.stringify(form)}</pre>
 				<form onSubmit={handleSubmitComment}>
 					<label>
 						Write your comment:
 						<textarea
 							name="body"
 							id="comment-body"
-							rows="5"
+							rows="3"
 							cols="100"
 							placeholder="Your comment..."
 							onChange={handleChange}
 						/>
-						{/* <input
-							type="hidden"
-							name="article_id"
-							value={article_id}
-						/>
-						<input
-							type="hidden"
-							name="author"
-							value={userLogged}
-						/> */}
 					</label>
 					<input type="submit" value={"submit"} className="btn" />
 				</form>
 			</section>
 			{commentsFetch.length > 0 ? (
 				<section id="comments-list">
+					{Object.keys(postedComment).length > 0 ? (
+						<CommentBox
+							newClass={"new-comment-posted"}
+							comment={postedComment}
+						/>
+					) : null}
+
 					{commentsFetch.map((comment) => {
 						let commentDate;
 						if (comment.created_at) {
@@ -69,30 +67,11 @@ export const Comments = ({article_id}) => {
 							commentDate = date.toLocaleDateString();
 						}
 						return (
-							<article className="comment" key={comment.comment_id}>
-								<p className="fw-bold mb-1">{comment.author}:</p>
-								<p>{comment.body}</p>
-								<p>
-									{commentDate} | Votes: {comment.votes} — Is it util for you?{" "}
-									<button className="btn-hidden-design">
-										<img
-											src="/src/assets/images/like.png"
-											width={"16px"}
-											alt="Like comment"
-											title="Like comment"
-										/>
-									</button>{" "}
-									|
-									<button className="btn-hidden-design">
-										<img
-											src="/src/assets/images/dislike.png"
-											width={"18px"}
-											alt="Dislike comment"
-											title="Dislike comment"
-										/>
-									</button>
-								</p>
-							</article>
+							<CommentBox
+								comment={comment}
+								key={comment.comment_id}
+								commentDate={commentDate}
+							/>
 						);
 					})}
 				</section>
