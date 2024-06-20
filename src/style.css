@@ -1,6 +1,21 @@
 /* general style */
 #main-content {
   margin: 50px 0;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 2.4rem;
+  font-weight: bold;
+}
+
+.logo .news {
+  color: #ce1212;
+}
+
+h1 {
+  text-align: center;
 }
 
 .btn {
@@ -23,6 +38,22 @@
 .btn-hidden-design {
   background: none;
   border: none;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+#basic-navbar-nav a {
+  color: black;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+}
+
+#basic-navbar-nav a:hover {
+  color: #ce1212;
+  border-bottom-color: #ce1212;
 }
 
 /* blog */
@@ -113,5 +144,39 @@ aside {
   position: -webkit-sticky;
   position: sticky;
   top: 80px;
+}
+
+/* FOOTER */
+footer .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+footer #footer-nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+footer #footer-nav ul li {
+  margin: 0 20px;
+  list-style: none;
+}
+
+footer #footer-nav ul li a {
+  color: #ce1212;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+footer #footer-nav ul li a:hover {
+  color: black;
 }
 /*# sourceMappingURL=style.css.map */
