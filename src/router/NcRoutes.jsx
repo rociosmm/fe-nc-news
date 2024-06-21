@@ -8,6 +8,7 @@ import {Topics} from "../components/Topics";
 import {Articles} from "../components/Articles";
 import {Users} from "../components/Users";
 import {SingleUser} from "../components/SingleUser";
+import {Error404} from "../components/Error404";
 
 export const NcRoutes = ({articles, isLoading}) => {
 	return (
@@ -25,6 +26,7 @@ export const NcRoutes = ({articles, isLoading}) => {
 			<Route path="/blog/topics/:topic" element={<Articles />} />
 			<Route path="/users" element={<Users />} />
 			<Route path="/users/:username" element={<SingleUser />} />
+			<Route path="*" element={<Error404 />} />
 		</Routes>
 	);
 };
