@@ -3,7 +3,7 @@
     margin: 50px 0;
     max-width: 1280px;
 	margin: 0 auto;
-
+    min-height: 100vh;
 }
 
 .logo{
@@ -45,6 +45,18 @@ h1{
 	margin: 0 auto;
 }
 
+/* HEADER */
+.user-logged{
+    font-weight: 600;
+    padding: 0.5rem;
+    margin-bottom: 0;
+    align-self: center;
+    
+    span{
+        color: rgb(206, 18, 18);
+    }
+    
+}
 #basic-navbar-nav{
     a {
         color: black;

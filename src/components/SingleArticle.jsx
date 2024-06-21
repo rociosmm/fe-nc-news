@@ -1,14 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {editArticle, getArticleByID} from "../utils/api";
 import {SideBar} from "./SideBar";
 import {Comments} from "./Comments";
+import {UserContext} from "../context/UserContext";
 
 export const SingleArticle = () => {
 	const {article_id} = useParams();
 	const [singleArticle, setSingleArticle] = useState({});
 	const [error, setError] = useState("");
 	const [loading, setLoading] = useState(true);
+	const {username} = useContext(UserContext);
 	let dateArticle;
 	useEffect(() => {
 		getArticleByID(article_id).then((article) => {

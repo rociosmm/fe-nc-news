@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {getUsers} from "../utils/api";
 import {UsersCard} from "./designComponents/UsersCard";
+import {UserContext} from "../context/UserContext";
 
 export const Users = () => {
 	const [users, setUsers] = useState([]);
+	const {username} = useContext(UserContext);
 
 	useEffect(() => {
 		getUsers().then((users) => {

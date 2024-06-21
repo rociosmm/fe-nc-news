@@ -3,6 +3,7 @@
   margin: 50px 0;
   max-width: 1280px;
   margin: 0 auto;
+  min-height: 100vh;
 }
 
 .logo {
@@ -43,6 +44,20 @@ h1 {
 .container {
   max-width: 1280px;
   margin: 0 auto;
+}
+
+/* HEADER */
+.user-logged {
+  font-weight: 600;
+  padding: 0.5rem;
+  margin-bottom: 0;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.user-logged span {
+  color: #ce1212;
 }
 
 #basic-navbar-nav a {

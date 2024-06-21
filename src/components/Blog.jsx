@@ -1,10 +1,12 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import {ArticleCard} from "./designComponents/ArticleCard";
 import {getArticles} from "../utils/api";
+import { UserContext } from "../context/UserContext";
 
 export const Blog = () => {
 	const [articles, setArticles] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const {username} = useContext(UserContext)
 
 	useEffect(() => {
 		getArticles().then(({articles}) => {

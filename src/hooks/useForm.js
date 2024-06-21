@@ -6,7 +6,6 @@ export const useForm = (firstObject = {}) => {
 	const serializeForm = (form) => {
 		const formData = new FormData(form);
 
-		// const fullForm = {article_id: article_id, author: userLogged};
 		const fullForm = firstObject;
 		for (let [name, value] of formData) {
 			fullForm[name] = value;

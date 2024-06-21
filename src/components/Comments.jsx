@@ -1,22 +1,17 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {getCommentsForArticle, postComment} from "../utils/api";
 import {useForm} from "../hooks/useForm";
 import {CommentBox} from "./designComponents/CommentBox";
+import { UserContext } from "../context/UserContext";
 
 export const Comments = ({article_id}) => {
 	const [commentsFetch, setCommentsFetch] = useState([]);
-	const [userLogged, setUserLogged] = useState("grumpy19");
+	const {username} = useContext(UserContext)
 	const {form, handleChange, handleSubmit} = useForm({
-		username: userLogged,
+		username: username,
 	});
 	const [postedComment, setPostedComment] = useState({});
 	const [successMsg, setSuccessMsg] = useState("");
-	// const [form, setForm] = useState({});
-
-	// const [currentCommentForm, setCurrentCommentForm] = useState({
-	// 	article_id: article_id,
-	// 	author: userLogged,
-	// });
 	useEffect(() => {
 		if (article_id) {
 			getCommentsForArticle(article_id).then((comments) => {
@@ -42,7 +37,7 @@ export const Comments = ({article_id}) => {
 			<p className="fs-4 fw-bold">Comments</p>
 			<section id="post-comment">
 				{successMsg !== "" ? (
-					<div class="alert alert-success" role="alert">
+					<div className="alert alert-success" role="alert">
 						{successMsg}
 					</div>
 				) : null}
