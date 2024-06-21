@@ -10,6 +10,7 @@ export const Comments = ({article_id}) => {
 		username: userLogged,
 	});
 	const [postedComment, setPostedComment] = useState({});
+	const [successMsg, setSuccessMsg] = useState("");
 	// const [form, setForm] = useState({});
 
 	// const [currentCommentForm, setCurrentCommentForm] = useState({
@@ -30,13 +31,22 @@ export const Comments = ({article_id}) => {
 		console.log("form bf send :>> ", form);
 		postComment(article_id, form).then(({comment}) => {
 			setPostedComment(comment);
+			setSuccessMsg("You posted a comment!");
+			setTimeout(() => setSuccessMsg(""), 2000);
+			const myForm = document.querySelector("#post-comment-form");
+			myForm.reset();
 		});
 	};
 	return (
 		<div id="comments">
 			<p className="fs-4 fw-bold">Comments</p>
 			<section id="post-comment">
-				<form onSubmit={handleSubmitComment}>
+				{successMsg !== "" ? (
+					<div class="alert alert-success" role="alert">
+						{successMsg}
+					</div>
+				) : null}
+				<form id="post-comment-form" onSubmit={handleSubmitComment}>
 					<label>
 						Write your comment:
 						<textarea

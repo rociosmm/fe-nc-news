@@ -8,11 +8,14 @@ export const SingleArticle = () => {
 	const {article_id} = useParams();
 	const [singleArticle, setSingleArticle] = useState({});
 	const [error, setError] = useState("");
+	const [loading, setLoading] = useState(true);
 	let dateArticle;
 	useEffect(() => {
 		getArticleByID(article_id).then((article) => {
 			setSingleArticle(article);
 		});
+
+		setLoading(false);
 	}, [article_id]);
 
 	if (singleArticle.created_at) {
@@ -39,56 +42,62 @@ export const SingleArticle = () => {
 
 	return (
 		<div id="single-article-page">
-			<article id={singleArticle.article_id}>
-				<h1>{singleArticle.title}</h1>
-				<img
-					id="featured-image"
-					src={singleArticle.article_img_url}
-					alt={singleArticle.title + " featured image"}
-				/>
-
-				<h5>
+			{loading ? (
+				<div class="spinner-border text-danger text-xl-center" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
+			) : (
+				<article id={"article-" + singleArticle.article_id}>
+					<h1>{singleArticle.title}</h1>
 					<img
-						src="/src/assets/images/tags-icon.png"
-						width={"16px"}
-						alt="tags icon"
+						id="featured-image"
+						src={singleArticle.article_img_url}
+						alt={singleArticle.title + " featured image"}
 					/>
-					&nbsp; {singleArticle.topic}
-				</h5>
-				<p className="meta-info">
-					{singleArticle.author} | {dateArticle}
-				</p>
-				{!error ? (
-					<p>Article votes: {singleArticle.votes}</p>
-				) : (
-					setTimeout(() => {
-						singleArticle.votes - 1;
-					}, 1000)
-				)}
-				<p>
-					Give us your vote:
-					<button className="btn-hidden-design" onClick={(e) => vote(1)}>
-						<img
-							src="/src/assets/images/like.png"
-							width={"16px"}
-							alt="Like comment"
-							title="Like comment"
-						/>
-					</button>{" "}
-					|
-					<button className="btn-hidden-design" onClick={(e) => vote(-1)}>
-						<img
-							src="/src/assets/images/dislike.png"
-							width={"18px"}
-							alt="Dislike comment"
-							title="Dislike comment"
-						/>
-					</button>
-				</p>
-				<div id="body">{singleArticle.body}</div>
 
-				<Comments article_id={singleArticle.article_id} />
-			</article>
+					<h5>
+						<img
+							src="/src/assets/images/tags-icon.png"
+							width={"16px"}
+							alt="tags icon"
+						/>
+						&nbsp; {singleArticle.topic}
+					</h5>
+					<p className="meta-info">
+						{singleArticle.author} | {dateArticle}
+					</p>
+					{!error ? (
+						<p>Article votes: {singleArticle.votes}</p>
+					) : (
+						setTimeout(() => {
+							singleArticle.votes - 1;
+						}, 1000)
+					)}
+					<p>
+						Give us your vote:
+						<button className="btn-hidden-design" onClick={(e) => vote(1)}>
+							<img
+								src="/src/assets/images/like.png"
+								width={"16px"}
+								alt="Like comment"
+								title="Like comment"
+							/>
+						</button>{" "}
+						|
+						<button className="btn-hidden-design" onClick={(e) => vote(-1)}>
+							<img
+								src="/src/assets/images/dislike.png"
+								width={"18px"}
+								alt="Dislike comment"
+								title="Dislike comment"
+							/>
+						</button>
+					</p>
+					<div id="body">{singleArticle.body}</div>
+
+					<Comments article_id={singleArticle.article_id} />
+				</article>
+			)}
 			<aside>
 				<SideBar />
 			</aside>
