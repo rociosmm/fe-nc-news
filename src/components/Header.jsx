@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import {UserContext} from "../context/UserContext";
 
 export const Header = ({topics}) => {
+	const {username} = useContext(UserContext);
 	return (
 		<>
 			<Navbar expand="md" className="bg-body-tertiary" sticky="top">
@@ -34,6 +36,9 @@ export const Header = ({topics}) => {
 							<Nav.Link href="/users">Users</Nav.Link>
 						</Nav>
 					</Navbar.Collapse>
+					<p className="user-logged">
+						Hello <span>{username}</span>
+					</p>
 				</Container>
 			</Navbar>
 		</>

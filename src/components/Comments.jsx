@@ -1,21 +1,17 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {getCommentsForArticle, postComment} from "../utils/api";
 import {useForm} from "../hooks/useForm";
 import {CommentBox} from "./designComponents/CommentBox";
+import {UserContext} from "../context/UserContext";
 
 export const Comments = ({article_id}) => {
 	const [commentsFetch, setCommentsFetch] = useState([]);
-	const [userLogged, setUserLogged] = useState("grumpy19");
+	const {username} = useContext(UserContext);
 	const {form, handleChange, handleSubmit} = useForm({
-		username: userLogged,
+		username: username,
 	});
 	const [postedComment, setPostedComment] = useState({});
-	// const [form, setForm] = useState({});
-
-	// const [currentCommentForm, setCurrentCommentForm] = useState({
-	// 	article_id: article_id,
-	// 	author: userLogged,
-	// });
+	const [successMsg, setSuccessMsg] = useState("");
 	useEffect(() => {
 		if (article_id) {
 			getCommentsForArticle(article_id).then((comments) => {
@@ -30,13 +26,22 @@ export const Comments = ({article_id}) => {
 		console.log("form bf send :>> ", form);
 		postComment(article_id, form).then(({comment}) => {
 			setPostedComment(comment);
+			setSuccessMsg("You posted a comment!");
+			setTimeout(() => setSuccessMsg(""), 2000);
+			const myForm = document.querySelector("#post-comment-form");
+			myForm.reset();
 		});
 	};
 	return (
 		<div id="comments">
 			<p className="fs-4 fw-bold">Comments</p>
 			<section id="post-comment">
-				<form onSubmit={handleSubmitComment}>
+				{successMsg !== "" ? (
+					<div className="alert alert-success" role="alert">
+						{successMsg}
+					</div>
+				) : null}
+				<form id="post-comment-form" onSubmit={handleSubmitComment}>
 					<label>
 						Write your comment:
 						<textarea
@@ -48,7 +53,7 @@ export const Comments = ({article_id}) => {
 							onChange={handleChange}
 						/>
 					</label>
-					<input type="submit" value={"submit"} className="btn" />
+					<input type="submit" value={"submit"} className="custom-btn" />
 				</form>
 			</section>
 			{commentsFetch.length > 0 ? (

@@ -6,7 +6,6 @@ export const useForm = (firstObject = {}) => {
 	const serializeForm = (form) => {
 		const formData = new FormData(form);
 
-		// const fullForm = {article_id: article_id, author: userLogged};
 		const fullForm = firstObject;
 		for (let [name, value] of formData) {
 			fullForm[name] = value;
@@ -21,12 +20,14 @@ export const useForm = (firstObject = {}) => {
 			...currentData,
 			[name]: value,
 		}));
+		document.querySelector("form>input[type=submit]").disabled = false;
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const formDataReceived = serializeForm(e.target);
 		setForm(formDataReceived);
+		document.querySelector("form>input[type=submit]").disabled = true;
 	};
 	console.log("form :>> ", form);
 	return {

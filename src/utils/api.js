@@ -98,3 +98,16 @@ export const postComment = (article_id, body) => {
 			throw err;
 		});
 };
+
+export const deleteCommentReq = (comment_id) => {
+	return ncNewsApi
+		.delete(`/comments/${comment_id}`)
+		.then((res) => {
+			if (res.status === 204) {
+				return "Comment deleted";
+			}
+		})
+		.catch((err) => {
+			throw err;
+		});
+};
