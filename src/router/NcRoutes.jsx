@@ -13,8 +13,7 @@ import {Error404} from "../components/Error404";
 export const NcRoutes = ({articles, isLoading}) => {
 	return (
 		<Routes>
-			<Route path="/" element={<Home />} />
-			<Route path="/home" element={<Home />} />
+			<Route path="/" element={<Blog />} />
 			<Route
 				path="/blog"
 				element={<Blog articles={articles} isLoading={isLoading} />}
