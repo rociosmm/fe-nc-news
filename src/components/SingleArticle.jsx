@@ -9,7 +9,7 @@ export const SingleArticle = () => {
 	const {article_id} = useParams();
 	const [singleArticle, setSingleArticle] = useState({});
 	const [error, setError] = useState("");
-	const [loading, setLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(true);
 	const {username} = useContext(UserContext);
 	let dateArticle;
 	useEffect(() => {
@@ -17,8 +17,10 @@ export const SingleArticle = () => {
 			setSingleArticle(article);
 		});
 
-		setLoading(false);
+		setIsLoading(false);
 	}, [article_id]);
+
+	console.log("singleArticle :>> ", singleArticle);
 
 	if (singleArticle.created_at) {
 		const date = new Date(singleArticle.created_at);
@@ -35,6 +37,7 @@ export const SingleArticle = () => {
 		})
 			.then((data) => {
 				setSingleArticle(data.article);
+				if (Object.keys(SingleArticle).length > 0) setIsLoading(false);
 			})
 			.catch((err) => {
 				setError("Try again, your vote couldn't be added");
@@ -44,8 +47,11 @@ export const SingleArticle = () => {
 
 	return (
 		<div id="single-article-page">
-			{loading ? (
-				<div className="spinner-border text-danger text-xl-center" role="status">
+			{isLoading ? (
+				<div
+					className="spinner-border text-danger text-xl-center"
+					role="status"
+				>
 					<span className="sr-only">Loading...</span>
 				</div>
 			) : (

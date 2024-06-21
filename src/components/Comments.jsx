@@ -12,10 +12,12 @@ export const Comments = ({article_id}) => {
 	});
 	const [postedComment, setPostedComment] = useState({});
 	const [successMsg, setSuccessMsg] = useState("");
+	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
 		if (article_id) {
 			getCommentsForArticle(article_id).then((comments) => {
 				setCommentsFetch(comments);
+				if (comments.length > 0) setIsLoading(false);
 			});
 		}
 	}, [article_id]);

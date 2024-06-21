@@ -36,9 +36,11 @@ export const Header = ({topics}) => {
 							<Nav.Link href="/users">Users</Nav.Link>
 						</Nav>
 					</Navbar.Collapse>
-					<p className="user-logged">
-						Hello <span>{username}</span>
-					</p>
+					{username !== "" ? (
+						<p className="user-logged">
+							Hello <span>{username}</span>
+						</p>
+					) : null}
 				</Container>
 			</Navbar>
 		</>
