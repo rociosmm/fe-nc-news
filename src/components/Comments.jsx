@@ -2,11 +2,11 @@ import React, {useContext, useEffect, useState} from "react";
 import {getCommentsForArticle, postComment} from "../utils/api";
 import {useForm} from "../hooks/useForm";
 import {CommentBox} from "./designComponents/CommentBox";
-import { UserContext } from "../context/UserContext";
+import {UserContext} from "../context/UserContext";
 
 export const Comments = ({article_id}) => {
 	const [commentsFetch, setCommentsFetch] = useState([]);
-	const {username} = useContext(UserContext)
+	const {username} = useContext(UserContext);
 	const {form, handleChange, handleSubmit} = useForm({
 		username: username,
 	});
@@ -53,7 +53,7 @@ export const Comments = ({article_id}) => {
 							onChange={handleChange}
 						/>
 					</label>
-					<input type="submit" value={"submit"} className="btn" />
+					<input type="submit" value={"submit"} className="custom-btn" />
 				</form>
 			</section>
 			{commentsFetch.length > 0 ? (

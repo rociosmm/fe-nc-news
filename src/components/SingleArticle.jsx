@@ -45,8 +45,8 @@ export const SingleArticle = () => {
 	return (
 		<div id="single-article-page">
 			{loading ? (
-				<div class="spinner-border text-danger text-xl-center" role="status">
-					<span class="sr-only">Loading...</span>
+				<div className="spinner-border text-danger text-xl-center" role="status">
+					<span className="sr-only">Loading...</span>
 				</div>
 			) : (
 				<article id={"article-" + singleArticle.article_id}>

@@ -11,6 +11,7 @@ import {SignIn} from "./components/SignIn";
 function App() {
 	const [topics, setTopics] = useState([]);
 	const {username, setUsername} = useContext(UserContext);
+
 	useEffect(() => {
 		getTopics().then((topics) => {
 			setTopics(topics);
@@ -22,7 +23,7 @@ function App() {
 			{/* <div id="main-content">
 				<NcRoutes />
 			</div> */}
-			<div className="main-content">
+			<div className="main-content container">
 				{username ? <NcRoutes /> : <SignIn setUsername={setUsername} />}
 			</div>
 			<Footer topics={topics} />
