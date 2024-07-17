@@ -23,6 +23,10 @@ h1 {
   text-align: center;
 }
 
+.h3 {
+  font-size: 0.9rem;
+}
+
 .link-btn {
   padding: 10px 20px;
   text-decoration: none;
@@ -131,6 +135,49 @@ h1 {
     margin: 20px 0;
     text-align: left;
   }
+  .last-news-sidebar {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 20px !important;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  }
+  .last-news-sidebar .feature-img {
+    width: 30%;
+    background-color: green;
+    margin-right: 20px;
+  }
+  .last-news-sidebar .feature-img img {
+    width: 100%;
+    height: 100px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -webkit-box-shadow: 2px 2px 6px #eee;
+            box-shadow: 2px 2px 6px #eee;
+  }
+  .last-news-sidebar .text {
+    width: 60%;
+  }
 }
 
 #single-article-page article {
@@ -153,7 +200,10 @@ h1 {
 }
 
 /* Comments component inside single article page */
-#comments form, #comments input, #comments label, #comments textarea {
+#comments form,
+#comments input,
+#comments label,
+#comments textarea {
   width: 100%;
 }
 
@@ -225,6 +275,21 @@ aside {
   position: -webkit-sticky;
   position: sticky;
   top: 80px;
+}
+
+aside section {
+  margin-bottom: 30px;
+}
+
+aside #topics-list ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+aside #topics-list li a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #ce1212;
 }
 
 /* FOOTER */

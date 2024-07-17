@@ -131,7 +131,7 @@ export const SingleArticle = () => {
 					</article>
 				)}
 				<aside>
-					<SideBar />
+					<SideBar topic={singleArticle.topic} />
 				</aside>
 			</div>
 		);
