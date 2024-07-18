@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getArticles, getTopics } from "../utils/api";
-import { LastArticleCard } from "./LastArticleCard";
+import { LastArticleCard } from "./designComponents/LastArticleCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag } from "@fortawesome/free-solid-svg-icons/faTag";
 import { capitalizeString } from "../utils/helpers";

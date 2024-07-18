@@ -225,16 +225,57 @@ h1 {
     margin: 20px;
     text-align: center;
 
+    a {
+      text-decoration: none;
+      color: #333;
+    }
+
     img {
       width: 200px;
       height: 200px;
       object-fit: contain;
       margin: 0 auto;
       padding: 30px;
+      transition: all 1000ms;
+      -webkit-transition: all 1000ms;
+      -moz-transition: all 1000ms;
+      -ms-transition: all 1000ms;
+      -o-transition: all 1000ms;
+    }
+  }
+
+  .user-card:hover {
+    img {
+      padding: 5px;
     }
   }
 }
 /* END USERS */
+
+/* USER PAGE */
+#user-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30px;
+
+  h2{
+    margin-bottom: 30px;
+  }
+
+  .list-group-flush span {
+    font-weight: bold;
+  }
+
+  #articles-list {
+    margin-left: 30px;
+
+    .h3 {
+      font-size: 1.1rem !important;
+    }
+  }
+}
+/* END USER PAGE */
 
 /* sidebar*/
 aside {
@@ -249,9 +290,9 @@ aside {
     margin-bottom: 30px;
   }
   #topics-list {
-    ul{
-        list-style: none;
-        padding-left: 0px;
+    ul {
+      list-style: none;
+      padding-left: 0px;
     }
 
     li a {

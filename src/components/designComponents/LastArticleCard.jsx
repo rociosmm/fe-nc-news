@@ -1,7 +1,7 @@
 import { faTag } from "@fortawesome/free-solid-svg-icons/faTag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { capitalizeString } from "../utils/helpers";
+import { capitalizeString } from "../../utils/helpers";
 
 export const LastArticleCard = ({ article }) => {
   console.log("article LastArticleCard :>> ", article);
