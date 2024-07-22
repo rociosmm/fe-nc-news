@@ -13,7 +13,7 @@ export const SingleUser = () => {
   console.log("usernamePage :>> ", usernamePage);
   const [userDetails, setUserDetails] = useState({});
   const { username } = useContext(UserContext);
-  const [articlesUser, setArticlesUser] = useState([])
+  const [articlesUser, setArticlesUser] = useState([]);
 
   useEffect(() => {
     getUser(usernamePage).then((user) => {
@@ -23,17 +23,23 @@ export const SingleUser = () => {
 
     getArticles({ author: usernamePage }).then((data) => {
       console.log("data userPAge :>> ", data);
-      setArticlesUser(data.articles)
+      setArticlesUser(data.articles);
     });
   }, []);
 
-  //console.log("user :>> ", userDetails);
 
   return (
     <div id="user-page">
       <section id="user-info">
         <Card style={{ width: "20rem" }}>
-          <Card.Img variant="top" src={userDetails.avatar_url} />
+          <div className="profile-image-container">
+            <Card.Img
+              variant="top"
+              src={userDetails.avatar_url}
+              style={{ height: "200px", width: "auto" }}
+              className="img-fluid"
+            />
+          </div>
           <Card.Body>
             <Card.Title>{userDetails.name}</Card.Title>
             <Card.Text>{userDetails.username}</Card.Text>
@@ -53,8 +59,8 @@ export const SingleUser = () => {
       </section>
       <section id="articles-list">
         <h2>{userDetails.name}'s posts</h2>
-        {articlesUser.map(article => {
-          return <LastArticleCard key={article.article_id} article={article} />
+        {articlesUser.map((article) => {
+          return <LastArticleCard key={article.article_id} article={article} />;
           /* return <ArticleCard key={article.article_id} article={article} />; */
         })}
       </section>

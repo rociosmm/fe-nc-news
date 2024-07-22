@@ -70,12 +70,15 @@ h1 {
   padding: 0.5rem;
   margin-bottom: 0;
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
       align-self: center;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
 }
 
 .user-logged span {
   color: #ce1212;
+  margin-left: 5px;
 }
 
 #basic-navbar-nav a {
@@ -294,6 +297,13 @@ h1 {
   padding: 30px;
 }
 
+#user-page .profile-image-container {
+  max-height: 200px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
 #user-page h2 {
   margin-bottom: 30px;
 }
@@ -314,7 +324,7 @@ h1 {
 /* sidebar*/
 aside {
   min-width: 25%;
-  height: 80vh;
+  height: 85vh;
   -webkit-box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
           box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 20px;
@@ -323,8 +333,16 @@ aside {
   top: 80px;
 }
 
+aside .h3 {
+  font-size: 1rem;
+}
+
 aside section {
   margin-bottom: 30px;
+}
+
+aside .topic-in-card {
+  font-size: 0.9rem;
 }
 
 aside #topics-list ul {
@@ -338,6 +356,13 @@ aside #topics-list li a {
   color: #ce1212;
 }
 
+/* LAST ARTICLE CARD - HORIZONTAL CARD */
+.last-article-link {
+  text-decoration: none;
+  color: #ce1212;
+}
+
+/* END LAST ARTICLE CARD - HORIZONTAL CARD */
 /* FOOTER */
 footer .container {
   display: -webkit-box;

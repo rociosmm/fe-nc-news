@@ -69,9 +69,11 @@ h1 {
   padding: 0.5rem;
   margin-bottom: 0;
   align-self: center;
+  display: inline-flex;
 
   span {
     color: rgb(206, 18, 18);
+    margin-left: 5px;
   }
 }
 #basic-navbar-nav {
@@ -259,7 +261,14 @@ h1 {
   justify-content: space-between;
   padding: 30px;
 
-  h2{
+  .profile-image-container {
+    max-height: 200px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  h2 {
     margin-bottom: 30px;
   }
 
@@ -280,15 +289,24 @@ h1 {
 /* sidebar*/
 aside {
   min-width: 25%;
-  height: 80vh;
+  height: 85vh;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 20px;
   position: sticky;
   top: 80px;
 
+  .h3 {
+    font-size: 1rem;
+  }
+
   section {
     margin-bottom: 30px;
   }
+
+  .topic-in-card {
+    font-size: 0.9rem;
+  }
+
   #topics-list {
     ul {
       list-style: none;
@@ -302,6 +320,13 @@ aside {
     }
   }
 }
+
+/* LAST ARTICLE CARD - HORIZONTAL CARD */
+.last-article-link {
+  text-decoration: none;
+  color: rgb(206, 18, 18);
+}
+/* END LAST ARTICLE CARD - HORIZONTAL CARD */
 
 /* FOOTER */
 footer {
