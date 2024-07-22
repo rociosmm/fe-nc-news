@@ -27,7 +27,6 @@ export const SingleUser = () => {
     });
   }, []);
 
-  //console.log("user :>> ", userDetails);
 
   return (
     <div id="user-page">

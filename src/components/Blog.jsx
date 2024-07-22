@@ -1,7 +1,8 @@
 import React, {useState, useEffect, useContext} from "react";
 import {ArticleCard} from "./designComponents/ArticleCard";
 import {getArticles} from "../utils/api";
-import {UserContext} from "../context/UserContext";
+import { UserContext } from "../context/UserContext";
+import Form from "react-bootstrap/Form";
 
 export const Blog = () => {
 	const [articles, setArticles] = useState([]);
@@ -52,10 +53,10 @@ export const Blog = () => {
 				</div>
 			) : (
 				<>
-					<section id="filter" className="me-5">
+					<section id="filter" className="me-5 mb-2">
 						<label>
-							Sort by:{" "}
-							<select
+							Sort by:
+							<Form.Select
 								name="sort_by"
 								id="sort_by"
 								onChange={handleSort}
@@ -64,11 +65,11 @@ export const Blog = () => {
 								<option value="created_at">Date</option>
 								<option value="votes">Votes</option>
 								<option value="comment_count">Number of Comments</option>
-							</select>
+							</Form.Select>
 						</label>
 						<label className="ms-3">
 							Order:
-							<select
+							<Form.Select
 								name="order"
 								id="order"
 								onChange={handleOrder}
@@ -76,7 +77,7 @@ export const Blog = () => {
 							>
 								<option value="desc">Descendant</option>
 								<option value="asc">Ascendent</option>
-							</select>
+							</Form.Select>
 						</label>
 					</section>
 					<section id="articles-list">
