@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getArticles, getUser } from "../utils/api";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -7,13 +7,15 @@ import Button from "react-bootstrap/Button";
 import { UserContext } from "../context/UserContext";
 import { ArticleCard } from "./designComponents/ArticleCard";
 import { LastArticleCard } from "./designComponents/LastArticleCard";
+import { PostEditArticle } from "./PostEditArticle";
 
 export const SingleUser = () => {
   const usernamePage = useParams().username;
-  console.log("usernamePage :>> ", usernamePage);
   const [userDetails, setUserDetails] = useState({});
   const { username } = useContext(UserContext);
   const [articlesUser, setArticlesUser] = useState([]);
+  const [postArticle, setPostArticle] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getUser(usernamePage).then((user) => {
@@ -26,7 +28,6 @@ export const SingleUser = () => {
       setArticlesUser(data.articles);
     });
   }, []);
-
 
   return (
     <div id="user-page">
@@ -51,19 +52,37 @@ export const SingleUser = () => {
           </ListGroup>
           {usernamePage === username ? (
             <Card.Body>
-              <Button variant="outline-primary">Post new article</Button>{" "}
-              <Button variant="outline-secondary">Edit Profile</Button>{" "}
+              <Button
+                variant="outline-primary"
+                onClick={() => {
+                  setPostArticle(true);
+                }}
+              >
+                Post new article
+              </Button>
+              <Link
+                to="/blog/new-article"
+                className="btn btn-outline-secondary"
+              >
+                Edit Profile
+              </Link>
             </Card.Body>
           ) : null}
         </Card>
       </section>
-      <section id="articles-list">
-        <h2>{userDetails.name}'s posts</h2>
-        {articlesUser.map((article) => {
-          return <LastArticleCard key={article.article_id} article={article} />;
-          /* return <ArticleCard key={article.article_id} article={article} />; */
-        })}
-      </section>
+      {!postArticle ? (
+        <section id="articles-list">
+          <h2>{userDetails.name}'s posts</h2>
+          {articlesUser.map((article) => {
+            return (
+              <LastArticleCard key={article.article_id} article={article} />
+            );
+            /* return <ArticleCard key={article.article_id} article={article} />; */
+          })}
+        </section>
+      ) : (
+        <PostEditArticle setPostArticle={setPostArticle} author={username} />
+      )}
     </div>
   );
 };

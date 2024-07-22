@@ -297,6 +297,13 @@ h1 {
   padding: 30px;
 }
 
+#user-page #user-info {
+  height: 70vh;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 110px;
+}
+
 #user-page .profile-image-container {
   max-height: 200px;
   padding: 20px;

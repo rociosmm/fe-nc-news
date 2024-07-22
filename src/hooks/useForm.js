@@ -20,14 +20,14 @@ export const useForm = (firstObject = {}) => {
 			...currentData,
 			[name]: value,
 		}));
-		document.querySelector("form>input[type=submit]").disabled = false;
+		//document.querySelector("form>input[type=submit]").disabled = false;
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const formDataReceived = serializeForm(e.target);
 		setForm(formDataReceived);
-		document.querySelector("form>input[type=submit]").disabled = true;
+		//document.querySelector("form>input[type=submit]").disabled = true;
 	};
 	console.log("form :>> ", form);
 	return {

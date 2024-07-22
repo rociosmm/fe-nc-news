@@ -69,9 +69,9 @@ export const getUsers = () => {
 };
 
 export const getUser = (username) => {
-	return ncNewsApi.get(`/users/${username}`).then(({ data }) => {
-		const { user } = data;
-		return user;
+  return ncNewsApi.get(`/users/${username}`).then(({ data }) => {
+    const { user } = data;
+    return user;
   });
 };
 
@@ -112,6 +112,22 @@ export const deleteCommentReq = (comment_id) => {
     .then((res) => {
       if (res.status === 204) {
         return "Comment deleted";
+      }
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
+export const postNewArticle = (body) => {
+  ncNewsApi
+    .post(`/articles`, body)
+    .then((res) => {
+      console.log("res post new article :>> ", res);
+      if (res.status === 201) {
+        return res.data;
+      } else {
+        throw new Error(res.msg);
       }
     })
     .catch((err) => {
