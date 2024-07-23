@@ -261,6 +261,13 @@ h1 {
   justify-content: space-between;
   padding: 30px;
 
+  #user-info {
+    height: 70vh;
+    position: sticky;
+    top: 110px;
+   
+}
+
   .profile-image-container {
     max-height: 200px;
     padding: 20px;
@@ -285,6 +292,12 @@ h1 {
   }
 }
 /* END USER PAGE */
+/* POST ARTICLE */
+.ck-editor__editable {
+  min-height: 200px;
+}
+/* END POST ARTICLE */
+
 
 /* sidebar*/
 aside {

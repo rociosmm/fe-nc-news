@@ -297,6 +297,13 @@ h1 {
   padding: 30px;
 }
 
+#user-page #user-info {
+  height: 70vh;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 110px;
+}
+
 #user-page .profile-image-container {
   max-height: 200px;
   padding: 20px;
@@ -321,6 +328,12 @@ h1 {
 }
 
 /* END USER PAGE */
+/* POST ARTICLE */
+.ck-editor__editable {
+  min-height: 200px;
+}
+
+/* END POST ARTICLE */
 /* sidebar*/
 aside {
   min-width: 25%;

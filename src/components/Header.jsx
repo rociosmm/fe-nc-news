@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { UserContext } from "../context/UserContext";
+import { capitalizeString } from "../utils/helpers";
 
 export const Header = ({ topics }) => {
   const { username } = useContext(UserContext);
@@ -25,7 +26,7 @@ export const Header = ({ topics }) => {
                       href={`/blog/topics/${topic.slug}`}
                       key={topic.slug}
                     >
-                      {topic.slug.charAt(0).toUpperCase() + topic.slug.slice(1)}
+                      {capitalizeString(topic.slug)}
                     </NavDropdown.Item>
                   );
                 })}

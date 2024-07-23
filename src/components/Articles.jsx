@@ -12,7 +12,6 @@ export const Articles = () => {
 		sort_by: "created_at",
 		order: "desc",
 	});
-	console.log("topic :>> ", topic);
 
 	useEffect(() => {
 		getArticles({topic}).then(({articles}) => {
@@ -44,8 +43,6 @@ export const Articles = () => {
 			return {...current, [name]: value};
 		});
 	};
-
-	console.log("articlesByTopic :>> ", articlesByTopic);
 
 	return (
 		<main className="mt-5">

@@ -22,6 +22,7 @@ export const getArticleByID = (article_id) => {
       return data.article;
     })
     .catch((err) => {
+      console.log("err of single art:>> ", err);
       throw err;
     });
 };
@@ -69,9 +70,9 @@ export const getUsers = () => {
 };
 
 export const getUser = (username) => {
-	return ncNewsApi.get(`/users/${username}`).then(({ data }) => {
-		const { user } = data;
-		return user;
+  return ncNewsApi.get(`/users/${username}`).then(({ data }) => {
+    const { user } = data;
+    return user;
   });
 };
 
@@ -94,7 +95,6 @@ export const postComment = (article_id, body) => {
   return ncNewsApi
     .post(`/articles/${article_id}/comments`, body)
     .then((res) => {
-      console.log("res post axios :>> ", res);
       if (res.status >= 200 && res.status < 300) {
         return res.data;
       } else {
@@ -112,6 +112,19 @@ export const deleteCommentReq = (comment_id) => {
     .then((res) => {
       if (res.status === 204) {
         return "Comment deleted";
+      }
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
+export const postNewArticle = (body) => {
+  return ncNewsApi
+    .post(`/articles`, body)
+    .then((res) => {
+      if (res.status >= 200 && res.status < 300) {
+        return res.data;
       }
     })
     .catch((err) => {

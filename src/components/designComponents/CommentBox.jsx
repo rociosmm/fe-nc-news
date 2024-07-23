@@ -16,7 +16,6 @@ export const CommentBox = ({comment, commentDate, newClass = ""}) => {
 		deleteCommentReq(comment_id).then((msg) => {
 			console.log("msg :>> ", msg);
 		});
-		console.log("comment_id delete :>> ", comment_id);
 		setCurrentComment({});
 		setSuccessMsg("Comment deleted");
 		setTimeout(() => setSuccessMsg(""), 2000);
