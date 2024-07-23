@@ -328,6 +328,12 @@ h1 {
 }
 
 /* END USER PAGE */
+/* POST ARTICLE */
+.ck-editor__editable {
+  min-height: 200px;
+}
+
+/* END POST ARTICLE */
 /* sidebar*/
 aside {
   min-width: 25%;

@@ -17,7 +17,6 @@ export const SingleArticle = () => {
 		getArticleByID(article_id)
 			.then((article) => {
 				setSingleArticle(article);
-				console.log("singleArticle inside req:>> ", singleArticle);
 			})
 			.catch((err) => {
 				if (err.response.status === 404) {
@@ -29,8 +28,6 @@ export const SingleArticle = () => {
 
 		setIsLoading(false);
 	}, [article_id]);
-
-	console.log("singleArticle outside :>> ", singleArticle);
 
 	if (singleArticle.created_at) {
 		const date = new Date(singleArticle.created_at);

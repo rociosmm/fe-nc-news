@@ -1,16 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import { capitalizeString } from "../utils/helpers";
 import { getTopics, postNewArticle } from "../utils/api";
 import { useForm } from "../hooks/useForm";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import {
+  ClassicEditor,
+  Bold,
+  Essentials,
+  Heading,
+  Indent,
+  IndentBlock,
+  Italic,
+  Link,
+  List,
+  MediaEmbed,
+  Paragraph,
+  Table,
+  Undo,
+} from "ckeditor5";
+import "ckeditor5/ckeditor5.css";
+import { UserContext } from "../context/UserContext";
 
-export const PostEditArticle = ({ setPostArticle, username }) => {
+export const PostEditArticle = ({ setPostArticle, postArticle }) => {
   const location = useLocation();
+  const { username } = useContext(UserContext);
   const article = location.state ? location.state.article : null;
-  console.log("article :>> ", article);
   const [topics, setTopics] = useState([]);
   const { form, handleChange, handleSubmit } = useForm({ author: username });
+  const [editorContent, setEditorContent] = useState("");
 
   useEffect(() => {
     getTopics().then((topics) => {
@@ -18,15 +37,21 @@ export const PostEditArticle = ({ setPostArticle, username }) => {
     });
   }, []);
 
+  const handleEditorChange = (e, editor) => {
+    const data = editor.getData();
+    setEditorContent(data);
+    handleChange({ target: { name: "body", value: data } });
+  };
+
   const handleSubmitArticle = (e) => {
     e.preventDefault();
     handleSubmit(e);
-    console.log("form bf send to api:>> ", form);
-    postNewArticle(form).then((data) => {
-      console.log("data in component :>> ", data);
+    form.body = editorContent;
+
+    postNewArticle(form).then(({ article }) => {
+      setPostArticle(false);
     });
 
-    //setPostArticle(false)
   };
 
   return (
@@ -81,12 +106,51 @@ export const PostEditArticle = ({ setPostArticle, username }) => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label>Content</Form.Label>
-          <Form.Control
+          {/* <Form.Control
             name="body"
             as="textarea"
             rows={15}
             required
             onChange={handleChange}
+          /> */}
+          <CKEditor
+            name="body"
+            editor={ClassicEditor}
+            onChange={handleEditorChange}
+            config={{
+              toolbar: [
+                "undo",
+                "redo",
+                "|",
+                "heading",
+                "|",
+                "bold",
+                "italic",
+                "|",
+                "link",
+                "insertTable",
+                "mediaEmbed",
+                "|",
+                "bulletedList",
+                "numberedList",
+                "indent",
+                "outdent",
+              ],
+              plugins: [
+                Bold,
+                Essentials,
+                Heading,
+                Indent,
+                IndentBlock,
+                Italic,
+                Link,
+                List,
+                MediaEmbed,
+                Paragraph,
+                Table,
+                Undo,
+              ],
+            }}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">

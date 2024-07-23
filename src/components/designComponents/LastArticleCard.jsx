@@ -5,7 +5,6 @@ import { capitalizeString } from "../../utils/helpers";
 import { Link } from "react-router-dom";
 
 export const LastArticleCard = ({ article }) => {
-  console.log("article LastArticleCard :>> ", article);
   return (
     <article className="last-news-sidebar">
         <div className="feature-img">

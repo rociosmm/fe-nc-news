@@ -3,7 +3,6 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 
 export const UsersCard = ({ user }) => {
-  console.log("user :>> ", user);
   return (
     <Card className="user-card">
       <Link to={`/users/${user.username}`}>

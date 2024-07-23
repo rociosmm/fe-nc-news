@@ -25,7 +25,6 @@ export const Comments = ({article_id}) => {
 	const handleSubmitComment = (e) => {
 		e.preventDefault();
 		handleSubmit(e);
-		console.log("form bf send :>> ", form);
 		postComment(article_id, form).then(({comment}) => {
 			setPostedComment(comment);
 			setSuccessMsg("You posted a comment!");

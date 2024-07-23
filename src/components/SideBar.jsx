@@ -20,8 +20,6 @@ export const SideBar = ({ topic }) => {
     });
   }, []);
 
-  console.log("articles retrieved :>> ", articles);
-
   return (
     <>
       <h2>Related news</h2>

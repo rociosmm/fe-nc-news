@@ -19,15 +19,20 @@ export const SingleUser = () => {
 
   useEffect(() => {
     getUser(usernamePage).then((user) => {
-      console.log("user :>> ", user);
       setUserDetails(user);
     });
 
     getArticles({ author: usernamePage }).then((data) => {
-      console.log("data userPAge :>> ", data);
       setArticlesUser(data.articles);
     });
   }, []);
+
+  useEffect(() => {
+    getArticles({ author: usernamePage }).then((data) => {
+      setArticlesUser(data.articles);
+    });
+  }, [postArticle]);
+
 
   return (
     <div id="user-page">
@@ -81,7 +86,11 @@ export const SingleUser = () => {
           })}
         </section>
       ) : (
-        <PostEditArticle setPostArticle={setPostArticle} author={username} />
+        <PostEditArticle
+          postArticle={postArticle}
+          setPostArticle={setPostArticle}
+          author={username}
+        />
       )}
     </div>
   );

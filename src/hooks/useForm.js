@@ -29,7 +29,6 @@ export const useForm = (firstObject = {}) => {
 		setForm(formDataReceived);
 		//document.querySelector("form>input[type=submit]").disabled = true;
 	};
-	console.log("form :>> ", form);
 	return {
 		form,
 		handleChange,
