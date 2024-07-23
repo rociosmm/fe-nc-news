@@ -8,6 +8,7 @@ import { UserContext } from "../context/UserContext";
 import { ArticleCard } from "./designComponents/ArticleCard";
 import { LastArticleCard } from "./designComponents/LastArticleCard";
 import { PostEditArticle } from "./PostEditArticle";
+import { SignOut } from "./SignOut";
 
 export const SingleUser = () => {
   const usernamePage = useParams().username;
@@ -45,6 +46,8 @@ export const SingleUser = () => {
     });
   };
 
+  
+
   return (
     <div id="user-page">
       <section id="user-info">
@@ -67,22 +70,29 @@ export const SingleUser = () => {
             </ListGroup.Item>
           </ListGroup>
           {usernamePage === username ? (
-            <Card.Body>
-              <Button
-                variant="outline-primary"
-                onClick={() => {
-                  setPostArticle(true);
-                }}
-              >
-                Post new article
-              </Button>
-              <Link
-                to="/blog/new-article"
-                className="btn btn-outline-secondary"
-              >
-                Edit Profile
-              </Link>
-            </Card.Body>
+            <>
+              <Card.Body>
+                <Button
+                  variant="outline-primary"
+                  onClick={() => {
+                    setPostArticle(true);
+                  }}
+                >
+                  Post new article
+                </Button>
+                <Link
+                  to="/blog/new-article"
+                  className="btn btn-outline-secondary"
+                >
+                  Edit Profile
+                </Link>
+              </Card.Body>
+              <ListGroup className="list-group-flush">
+                <ListGroup.Item>
+                  <SignOut />
+                </ListGroup.Item>
+              </ListGroup>
+            </>
           ) : null}
         </Card>
       </section>
