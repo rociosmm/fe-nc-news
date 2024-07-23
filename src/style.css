@@ -321,10 +321,31 @@ h1 {
 
 #user-page #articles-list {
   margin-left: 30px;
+  display: block;
+  width: 100%;
 }
 
 #user-page #articles-list .h3 {
   font-size: 1.1rem !important;
+}
+
+#user-page #articles-list .user-article-in-feed {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+#user-page #articles-list .user-article-in-feed button {
+  margin-bottom: 20px;
+  font-weight: bold;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+          box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 /* END USER PAGE */

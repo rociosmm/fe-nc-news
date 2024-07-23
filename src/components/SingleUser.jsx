@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getArticles, getUser } from "../utils/api";
+import { deleteArticle, getArticles, getUser } from "../utils/api";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
@@ -15,6 +15,7 @@ export const SingleUser = () => {
   const { username } = useContext(UserContext);
   const [articlesUser, setArticlesUser] = useState([]);
   const [postArticle, setPostArticle] = useState(false);
+  const [successMsg, setSuccessMsg] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,8 +32,18 @@ export const SingleUser = () => {
     getArticles({ author: usernamePage }).then((data) => {
       setArticlesUser(data.articles);
     });
-  }, [postArticle]);
+    setTimeout(() => {
+      setSuccessMsg("");
+    }, 3000);
+  }, [postArticle, successMsg]);
 
+  const deletePost = (article_id, title) => {
+    console.log("article_id delete :>> ", article_id);
+    deleteArticle(article_id).then((msg) => {
+      console.log("msg :>> ", msg);
+      setSuccessMsg(`Article "${title}" deleted`);
+    });
+  };
 
   return (
     <div id="user-page">
@@ -78,9 +89,22 @@ export const SingleUser = () => {
       {!postArticle ? (
         <section id="articles-list">
           <h2>{userDetails.name}'s posts</h2>
+          {successMsg ? (
+            <div className="alert alert-success" role="alert">
+              {successMsg}
+            </div>
+          ) : null}
           {articlesUser.map((article) => {
             return (
-              <LastArticleCard key={article.article_id} article={article} />
+              <div className="user-article-in-feed" key={article.article_id}>
+                <LastArticleCard article={article} />
+                <Button
+                  variant="outline-danger"
+                  onClick={() => deletePost(article.article_id, article.title)}
+                >
+                  X Delete
+                </Button>
+              </div>
             );
             /* return <ArticleCard key={article.article_id} article={article} />; */
           })}
