@@ -131,3 +131,16 @@ export const postNewArticle = (body) => {
       throw err;
     });
 };
+
+export const deleteArticle = (article_id) => {
+  return ncNewsApi
+    .delete(`/articles/${article_id}`)
+    .then((res) => {
+      if (res.status === 204) {
+        return "Article deleted";
+      }
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
