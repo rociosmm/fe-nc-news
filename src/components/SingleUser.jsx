@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { deleteArticle, getArticles, getUser } from "../utils/api";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -17,7 +17,6 @@ export const SingleUser = () => {
   const [articlesUser, setArticlesUser] = useState([]);
   const [postArticle, setPostArticle] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
     getUser(usernamePage).then((user) => {
@@ -45,8 +44,6 @@ export const SingleUser = () => {
       setSuccessMsg(`Article "${title}" deleted`);
     });
   };
-
-  
 
   return (
     <div id="user-page">
@@ -80,12 +77,6 @@ export const SingleUser = () => {
                 >
                   Post new article
                 </Button>
-                <Link
-                  to="/blog/new-article"
-                  className="btn btn-outline-secondary"
-                >
-                  Edit Profile
-                </Link>
               </Card.Body>
               <ListGroup className="list-group-flush">
                 <ListGroup.Item>

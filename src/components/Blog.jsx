@@ -1,38 +1,38 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { ArticleCard } from "./designComponents/ArticleCard";
 import { getArticles } from "../utils/api";
 import { UserContext } from "../context/UserContext";
 import Form from "react-bootstrap/Form";
 import { useParams } from "react-router-dom";
 import { capitalizeString } from "../utils/helpers";
+import { Button } from "react-bootstrap";
 
 export const Blog = () => {
   const { topic } = useParams();
   const [articles, setArticles] = useState([]);
-  const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const { username } = useContext(UserContext);
+  const loadMoreButtonRef = useRef(null);
+  const [more, setMore] = useState(true);
   const [params, setParams] = useState({
     sort_by: "created_at",
     order: "desc",
-	  topic: topic ? topic : null,
-	  limit: 9,
-	  p: page
+    topic: topic ? topic : null,
+    limit: 9,
+    p: 1,
   });
-
-  useEffect(() => {
-    getArticles(params).then(({ articles }) => {
-      setArticles(articles);
-    });
-    setIsLoading(false);
-  }, []);
 
   useEffect(() => {
     setIsLoading(true);
     getArticles(params).then(({ articles }) => {
-      setArticles(articles);
+      setArticles((current) => {
+        return [...current, ...articles];
+      });
       if (articles.length > 0) {
         setIsLoading(false);
+      }
+      if (articles.length % params.limit !== 0) {
+        setMore(false);
       }
     });
   }, [params]);
@@ -50,6 +50,14 @@ export const Blog = () => {
       return { ...current, [name]: value };
     });
   };
+
+  const loadArticles = () => {
+    setParams((current) => {
+      return { ...current, p: current.p + 1 };
+    });
+  };
+
+  console.log("params :>> ", params);
   return (
     <main className="mt-5">
       {topic ? <h1>NC News - {capitalizeString(topic)} </h1> : <h1>NC News</h1>}
@@ -92,6 +100,15 @@ export const Blog = () => {
               return <ArticleCard key={article.article_id} article={article} />;
             })}
           </section>
+          {more ? (
+            <Button
+              variant="primary"
+              className="d-block py-3 w-25 m-auto"
+              onClick={loadArticles}
+            >
+              More articles
+            </Button>
+          ) : null}
         </>
       )}
     </main>
