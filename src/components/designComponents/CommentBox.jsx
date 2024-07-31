@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { UserContext } from "../../context/UserContext";
-import { deleteCommentReq } from "../../utils/api";
+import { deleteCommentReq, voteComment } from "../../utils/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons/faThumbsUp";
 import { faThumbsDown } from "@fortawesome/free-solid-svg-icons/faThumbsDown";
@@ -25,6 +25,23 @@ export const CommentBox = ({ comment, commentDate, newClass = "" }) => {
     setTimeout(() => setSuccessMsg(""), 2000);
   };
 
+  const vote = (increment) => {
+    setCurrentComment((currentCom) => {
+      return { ...currentCom, votes: currentCom.votes + increment };
+    });
+
+    voteComment(comment.comment_id, {
+      inc_votes: increment,
+    })
+      .then(({ comment }) => {
+        setCurrentComment(comment);
+      })
+      .catch((err) => {
+        setError("Try again, your vote couldn't be added");
+        throw new Error(err.message);
+      });
+  };
+
   if (successMsg === "" && Object.keys(currentComment).length > 0) {
     return (
       <article className={"comment " + newClass}>
@@ -34,11 +51,11 @@ export const CommentBox = ({ comment, commentDate, newClass = "" }) => {
           <p>
             {commentDate} | Votes: {currentComment.votes} — Is it useful for
             you?{" "}
-            <button className="btn-hidden-design">
+            <button className="btn-hidden-design" onClick={(e) => vote(1)}>
               <FontAwesomeIcon icon={faThumbsUp} />{" "}
             </button>{" "}
             |
-            <button className="btn-hidden-design">
+            <button className="btn-hidden-design" onClick={(e) => vote(-1)}>
               <FontAwesomeIcon icon={faThumbsDown} />{" "}
             </button>
           </p>

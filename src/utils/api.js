@@ -106,6 +106,21 @@ export const postComment = (article_id, body) => {
     });
 };
 
+export const voteComment = (comment_id, body) => {
+  return ncNewsApi
+    .patch(`/comments/${comment_id}`, body)
+    .then((res) => {
+      if (res.status >= 200 && res.status < 300) {
+        return res.data;
+      } else {
+        throw new Error(res.msg);
+      }
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
 export const deleteCommentReq = (comment_id) => {
   return ncNewsApi
     .delete(`/comments/${comment_id}`)

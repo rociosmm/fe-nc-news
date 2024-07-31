@@ -57,7 +57,6 @@ export const Blog = () => {
     });
   };
 
-  console.log("params :>> ", params);
   return (
     <main className="mt-5">
       {topic ? <h1>NC News - {capitalizeString(topic)} </h1> : <h1>NC News</h1>}
