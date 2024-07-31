@@ -5,6 +5,7 @@ import { deleteCommentReq } from "../../utils/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons/faThumbsUp";
 import { faThumbsDown } from "@fortawesome/free-solid-svg-icons/faThumbsDown";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export const CommentBox = ({ comment, commentDate, newClass = "" }) => {
   const { username } = useContext(UserContext);
@@ -48,7 +49,9 @@ export const CommentBox = ({ comment, commentDate, newClass = "" }) => {
               variant="danger"
               onClick={(e) => deleteComment(currentComment.comment_id)}
             >
-              <b>X Delete</b>
+              <b>
+                <FontAwesomeIcon icon={faTrash} /> Delete
+              </b>
             </Button>
           ) : null}
         </div>

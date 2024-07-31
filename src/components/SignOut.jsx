@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 export const SignOut = () => {
   const { username, setUsername } = useContext(UserContext);
@@ -14,7 +16,7 @@ export const SignOut = () => {
   };
   return (
     <Button variant="info" onClick={logout}>
-      Logout
+      Logout &nbsp; <FontAwesomeIcon icon={faRightFromBracket} />
     </Button>
   );
 };

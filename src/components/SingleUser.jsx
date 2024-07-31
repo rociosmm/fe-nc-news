@@ -9,6 +9,12 @@ import { ArticleCard } from "./designComponents/ArticleCard";
 import { LastArticleCard } from "./designComponents/LastArticleCard";
 import { PostEditArticle } from "./PostEditArticle";
 import { SignOut } from "./SignOut";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTrash,
+  faPenToSquare,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const SingleUser = () => {
   const usernamePage = useParams().username;
@@ -59,7 +65,10 @@ export const SingleUser = () => {
           </div>
           <Card.Body>
             <Card.Title>{userDetails.name}</Card.Title>
-            <Card.Text>{userDetails.username}</Card.Text>
+            <Card.Text>
+              <FontAwesomeIcon icon={faUser} /> &nbsp;
+              {userDetails.username}
+            </Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
             <ListGroup.Item>
@@ -75,7 +84,8 @@ export const SingleUser = () => {
                     setPostArticle(true);
                   }}
                 >
-                  Post new article
+                  Post new article &nbsp;{" "}
+                  <FontAwesomeIcon icon={faPenToSquare} />
                 </Button>
               </Card.Body>
               <ListGroup className="list-group-flush">
@@ -103,7 +113,7 @@ export const SingleUser = () => {
                   variant="outline-danger"
                   onClick={() => deletePost(article.article_id, article.title)}
                 >
-                  X Delete
+                  <FontAwesomeIcon icon={faTrash} /> Delete
                 </Button>
               </div>
             );
