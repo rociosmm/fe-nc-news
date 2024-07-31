@@ -44,7 +44,6 @@ export const SingleUser = () => {
   }, [postArticle, successMsg]);
 
   const deletePost = (article_id, title) => {
-    console.log("article_id delete :>> ", article_id);
     deleteArticle(article_id).then((msg) => {
       console.log("msg :>> ", msg);
       setSuccessMsg(`Article "${title}" deleted`);
