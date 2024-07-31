@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { getArticles } from "../utils/api";
 import { ArticleCard } from "./designComponents/ArticleCard";
 import { Link } from "react-router-dom";
-import { Articles } from "./Articles";
 
 export const Home = () => {
   const [articles, setArticles] = useState([]);
