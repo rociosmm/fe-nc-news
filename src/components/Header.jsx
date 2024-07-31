@@ -18,6 +18,7 @@ export const Header = ({ topics }) => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto me-5">
+              <Nav.Link href="/home">Home</Nav.Link>
               <Nav.Link href="/blog">Articles</Nav.Link>
               <NavDropdown title="Topics" id="basic-nav-dropdown">
                 {topics.map((topic) => {
