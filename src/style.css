@@ -27,6 +27,14 @@ h1 {
   font-size: 0.9rem;
 }
 
+.down-color {
+  color: #ce1212;
+}
+
+.up-color {
+  color: #277c2a;
+}
+
 .link-btn {
   padding: 10px 20px;
   text-decoration: none;
