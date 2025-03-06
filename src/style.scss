@@ -55,6 +55,7 @@ h1 {
   -ms-transition: all 0.5s;
   -o-transition: all 0.5s;
 }
+
 .custom-btn:hover {
   background-color: white;
   color: black;
@@ -68,6 +69,7 @@ h1 {
 
 .container {
   max-width: 1280px;
+  width: 100% !important;
   margin: 0 auto;
 }
 
@@ -84,6 +86,7 @@ h1 {
     margin-left: 5px;
   }
 }
+
 #basic-navbar-nav {
   a {
     color: black;
@@ -101,6 +104,7 @@ h1 {
 #filter {
   text-align: right;
 }
+
 #articles-list {
   display: flex;
   flex-wrap: wrap;
@@ -125,9 +129,11 @@ h1 {
     article {
       min-width: 70%;
       margin-right: 50px;
+
       h1 {
         font-size: 2.2rem;
       }
+
       #featured-image {
         width: 100%;
         margin: 20px 0;
@@ -178,6 +184,7 @@ h1 {
     h1 {
       font-size: 1.8rem;
     }
+
     #featured-image {
       width: 100%;
       margin: 20px 0;
@@ -193,6 +200,7 @@ h1 {
 
 /* Comments component inside single article page */
 #comments {
+
   form,
   input,
   label,
@@ -215,15 +223,18 @@ h1 {
     .comment-data {
       width: 80%;
     }
+
     // .delete-comment{
     //     flex-grow: 1;
     //     flex-shrink: 1;
     // }
   }
 }
+
 .new-comment-posted {
   box-shadow: rgb(119, 223, 142) 0px 2px 6px !important;
 }
+
 /* USERS */
 #users {
   display: flex;
@@ -260,6 +271,7 @@ h1 {
     }
   }
 }
+
 /* END USERS */
 
 /* USER PAGE */
@@ -312,11 +324,13 @@ h1 {
     }
   }
 }
+
 /* END USER PAGE */
 /* POST ARTICLE */
 .ck-editor__editable {
   min-height: 200px;
 }
+
 /* END POST ARTICLE */
 
 /* sidebar*/
@@ -359,6 +373,7 @@ aside {
   text-decoration: none;
   color: rgb(206, 18, 18);
 }
+
 /* END LAST ARTICLE CARD - HORIZONTAL CARD */
 
 /* FOOTER */
@@ -368,6 +383,7 @@ footer {
     justify-content: space-between;
     align-items: center;
   }
+
   #footer-nav {
     ul {
       display: flex;
