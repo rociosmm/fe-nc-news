@@ -101,9 +101,35 @@ h1 {
   border-bottom-color: #ce1212;
 }
 
+/* home */
+.all-articles-btn {
+  width: 75%;
+}
+
+@media screen and (min-width: 768px) {
+  .all-articles-btn {
+    width: 25%;
+  }
+}
+
 /* blog */
 #filter {
   text-align: right;
+}
+
+.read-article {
+  color: #ce1212;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.read-article span {
+  display: none;
+}
+
+.read-article:hover span {
+  display: inline;
+  font-weight: bold;
 }
 
 #articles-list {
@@ -224,7 +250,7 @@ h1 {
 }
 
 #comments .comment {
-  padding: 20px;
+  padding: 40px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
           box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   display: -webkit-box;
@@ -238,10 +264,6 @@ h1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-#comments .comment .comment-data {
-  width: 80%;
 }
 
 .new-comment-posted {
@@ -367,7 +389,7 @@ h1 {
 /* sidebar*/
 aside {
   min-width: 25%;
-  height: 85vh;
+  height: 100%;
   -webkit-box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
           box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 20px;

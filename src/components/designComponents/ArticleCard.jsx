@@ -20,8 +20,9 @@ export const ArticleCard = ({article}) => {
 				<Link
 					to={`/blog/${article.article_id}`}
 					title={`Read ${article.title}`}
+					className="read-article"
 				>
-					Read article
+					Read article <span>{" >>"}</span>
 				</Link>
 			</Card.Body>
 		</Card>
