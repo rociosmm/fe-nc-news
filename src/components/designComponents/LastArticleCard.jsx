@@ -14,7 +14,7 @@ export const LastArticleCard = ({article}) => {
 					alt={`Feature image for ${article.title}`}
 				/>
 			</div>
-			<div className="text">
+			<div className="text py-2">
 				<Link
 					className="last-article-link"
 					to={`/blog/${article.article_id}`}
@@ -22,7 +22,7 @@ export const LastArticleCard = ({article}) => {
 				>
 					<h3 className="h3">{article.title}</h3>
 				</Link>
-				<p>
+				<p className="m-0">
 					<span className="topic-in-card">
 						<FontAwesomeIcon icon={faTag} /> &nbsp;
 						{capitalizeString(article.topic)}
